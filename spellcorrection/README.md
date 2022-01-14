@@ -1,4 +1,4 @@
-# spellcorrection
+# Spellcorrection
 
 ## Description
 In this project, I have developed an algorithm which utilizes Bayesian inference to correct spelling errors.
@@ -7,8 +7,9 @@ In this project, I have developed an algorithm which utilizes Bayesian inference
 The call corrected-word(w) tries to choose the most likely spelling correction for w. There is no way to know for sure (for example, should "lates" be corrected to "late" or "latest" or "lattes" or ...?), which suggests we use probabilities. We are trying to find the correction c, out of all possible candidate corrections, that maximizes the probability that c is the intended correction, given the original word w:
 
 ## Output 
->>> corrected-word('speling')
-'spelling'
+corrected-word('speling')
+
+output: 'spelling'
 
 
 
