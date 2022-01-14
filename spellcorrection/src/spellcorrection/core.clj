@@ -135,6 +135,7 @@
 
 
 ;; Spell correction
+;; "The subset of `words` that appear in the dictionary of WORDS."
 (defn known [index-trie words]
   (not-empty (filter #(:$ (get-in index-trie %) false) words)))
 
@@ -156,6 +157,7 @@
        (index-of chars (get mispelled pos)))
       )))
 
+ ;;  "Probability of `word`."
 (defn P [word-freq word-count candidate]
   (float ( * 0.3 (/ (get-in word-freq (apply conj (into [] candidate) [:$ :f]) 0) word-count))))
  
@@ -214,6 +216,7 @@
                     (pb-trans-replace Rep "abcdefghijklmnopqrstuvwxyz" word (:candidate %2) (:pos %2))) 
             final-map known-candidates)))
 
+   
 (defn total-known-candidates [word trie]
  (->> {}
      (inserted-candidates word trie)
@@ -222,6 +225,7 @@
      (replaced-candidates word trie))
 )
 
+;; "Most probable spelling correction for word."
 (defn corrected-word [word trie]
   (let [total-candidates (total-known-candidates word trie)]
         (into {} (map (fn [[k v]] [k (* v (P trie 42000075 k))]) total-candidates))))
